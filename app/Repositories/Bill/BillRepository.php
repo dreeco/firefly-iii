@@ -486,7 +486,10 @@ class BillRepository implements BillRepositoryInterface
         $description .= strtolower(join(' ', $sourceAccounts->pluck('name')->toArray()));
 
         $wordMatch   = $this->doWordMatch($matches, $description);
-        $amountMatch = $this->doAmountMatch(TransactionJournal::amountPositive($journal), $bill->amount_min, $bill->amount_max);
+		
+        //Edit Dreeco : I do not want the amount to have to match
+		$amountMatch = true;
+		//$amountMatch = $this->doAmountMatch(TransactionJournal::amountPositive($journal), $bill->amount_min, $bill->amount_max);
 
 
         /*
